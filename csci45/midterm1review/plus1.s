@@ -28,9 +28,25 @@ main:
 plus1:
   push {r4-r11, lr}
 
+  // let's make room on the stack to do our intermediate work
+  // sp stores a pointer to the top of the stack, and the stack grows
+  // "down"
+  // to make room to hold 4 bytes, I need to subtract 4 from sp
+  sub sp, sp, #4
+  // so now [sp] will give me access to that new place in stack memory
+
   // our argument is in r0
+  str r0, [sp]
+
+  ldr r1, [sp]
+  add r1, r1, #1
+  // store the answer back
+  str r1, [sp]
+
   // our return value goes in r0
-  add r0, r0, #1
+  ldr r0, [sp]
+  // remember to clean up any local vars from the stack!
+  add sp, sp, #4
 
   pop {r4-r11, pc}
 
