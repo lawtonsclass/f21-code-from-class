@@ -1,3 +1,6 @@
 [submodule "csci1"]
 	path = csci1
 	url = D:\\personal\\code\\csci1\\
+[submodule "csci40"]
+	path = csci40
+	url = D:\\personal\\code\\csci40\\
