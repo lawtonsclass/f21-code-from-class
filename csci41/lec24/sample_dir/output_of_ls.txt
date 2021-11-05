@@ -1,0 +1,10 @@
+example
+example.cpp
+file2.txt
+file.txt
+output_of_ls.txt
+example
+example.cpp
+file2.txt
+file.txt
+output_of_ls.txt
