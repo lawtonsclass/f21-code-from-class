@@ -1,0 +1,11 @@
+
+scratch:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00010054 <_start>:
+   10054:	e2800000 	add	r0, r0, #0
+   10058:	e3a0002a 	mov	r0, #42	; 0x2a
+   1005c:	e3a07001 	mov	r7, #1
+   10060:	ef000000 	svc	0x00000000

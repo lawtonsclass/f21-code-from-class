@@ -1,0 +1,158 @@
+
+hello:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+000102c4 <_init>:
+   102c4:	e92d4008 	push	{r3, lr}
+   102c8:	eb000020 	bl	10350 <call_weak_fn>
+   102cc:	e8bd8008 	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+000102d0 <.plt>:
+   102d0:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+   102d4:	e59fe004 	ldr	lr, [pc, #4]	; 102e0 <.plt+0x10>
+   102d8:	e08fe00e 	add	lr, pc, lr
+   102dc:	e5bef008 	ldr	pc, [lr, #8]!
+   102e0:	00010d20 	.word	0x00010d20
+
+000102e4 <puts@plt>:
+   102e4:	e28fc600 	add	ip, pc, #0, 12
+   102e8:	e28cca10 	add	ip, ip, #16, 20	; 0x10000
+   102ec:	e5bcfd20 	ldr	pc, [ip, #3360]!	; 0xd20
+
+000102f0 <__libc_start_main@plt>:
+   102f0:	e28fc600 	add	ip, pc, #0, 12
+   102f4:	e28cca10 	add	ip, ip, #16, 20	; 0x10000
+   102f8:	e5bcfd18 	ldr	pc, [ip, #3352]!	; 0xd18
+
+000102fc <__gmon_start__@plt>:
+   102fc:	e28fc600 	add	ip, pc, #0, 12
+   10300:	e28cca10 	add	ip, ip, #16, 20	; 0x10000
+   10304:	e5bcfd10 	ldr	pc, [ip, #3344]!	; 0xd10
+
+00010308 <abort@plt>:
+   10308:	e28fc600 	add	ip, pc, #0, 12
+   1030c:	e28cca10 	add	ip, ip, #16, 20	; 0x10000
+   10310:	e5bcfd08 	ldr	pc, [ip, #3336]!	; 0xd08
+
+Disassembly of section .text:
+
+00010314 <_start>:
+   10314:	e3a0b000 	mov	fp, #0
+   10318:	e3a0e000 	mov	lr, #0
+   1031c:	e49d1004 	pop	{r1}		; (ldr r1, [sp], #4)
+   10320:	e1a0200d 	mov	r2, sp
+   10324:	e52d2004 	push	{r2}		; (str r2, [sp, #-4]!)
+   10328:	e52d0004 	push	{r0}		; (str r0, [sp, #-4]!)
+   1032c:	e59fc010 	ldr	ip, [pc, #16]	; 10344 <_start+0x30>
+   10330:	e52dc004 	push	{ip}		; (str ip, [sp, #-4]!)
+   10334:	e59f000c 	ldr	r0, [pc, #12]	; 10348 <_start+0x34>
+   10338:	e59f300c 	ldr	r3, [pc, #12]	; 1034c <_start+0x38>
+   1033c:	ebffffeb 	bl	102f0 <__libc_start_main@plt>
+   10340:	ebfffff0 	bl	10308 <abort@plt>
+   10344:	00010484 	.word	0x00010484
+   10348:	00010404 	.word	0x00010404
+   1034c:	00010424 	.word	0x00010424
+
+00010350 <call_weak_fn>:
+   10350:	e59f3014 	ldr	r3, [pc, #20]	; 1036c <call_weak_fn+0x1c>
+   10354:	e59f2014 	ldr	r2, [pc, #20]	; 10370 <call_weak_fn+0x20>
+   10358:	e08f3003 	add	r3, pc, r3
+   1035c:	e7932002 	ldr	r2, [r3, r2]
+   10360:	e3520000 	cmp	r2, #0
+   10364:	012fff1e 	bxeq	lr
+   10368:	eaffffe3 	b	102fc <__gmon_start__@plt>
+   1036c:	00010ca0 	.word	0x00010ca0
+   10370:	0000001c 	.word	0x0000001c
+
+00010374 <deregister_tm_clones>:
+   10374:	e59f0018 	ldr	r0, [pc, #24]	; 10394 <deregister_tm_clones+0x20>
+   10378:	e59f3018 	ldr	r3, [pc, #24]	; 10398 <deregister_tm_clones+0x24>
+   1037c:	e1530000 	cmp	r3, r0
+   10380:	012fff1e 	bxeq	lr
+   10384:	e59f3010 	ldr	r3, [pc, #16]	; 1039c <deregister_tm_clones+0x28>
+   10388:	e3530000 	cmp	r3, #0
+   1038c:	012fff1e 	bxeq	lr
+   10390:	e12fff13 	bx	r3
+   10394:	00021028 	.word	0x00021028
+   10398:	00021028 	.word	0x00021028
+   1039c:	00000000 	.word	0x00000000
+
+000103a0 <register_tm_clones>:
+   103a0:	e59f0024 	ldr	r0, [pc, #36]	; 103cc <register_tm_clones+0x2c>
+   103a4:	e59f1024 	ldr	r1, [pc, #36]	; 103d0 <register_tm_clones+0x30>
+   103a8:	e0411000 	sub	r1, r1, r0
+   103ac:	e1a01141 	asr	r1, r1, #2
+   103b0:	e0811fa1 	add	r1, r1, r1, lsr #31
+   103b4:	e1b010c1 	asrs	r1, r1, #1
+   103b8:	012fff1e 	bxeq	lr
+   103bc:	e59f3010 	ldr	r3, [pc, #16]	; 103d4 <register_tm_clones+0x34>
+   103c0:	e3530000 	cmp	r3, #0
+   103c4:	012fff1e 	bxeq	lr
+   103c8:	e12fff13 	bx	r3
+   103cc:	00021028 	.word	0x00021028
+   103d0:	00021028 	.word	0x00021028
+   103d4:	00000000 	.word	0x00000000
+
+000103d8 <__do_global_dtors_aux>:
+   103d8:	e92d4010 	push	{r4, lr}
+   103dc:	e59f4018 	ldr	r4, [pc, #24]	; 103fc <__do_global_dtors_aux+0x24>
+   103e0:	e5d43000 	ldrb	r3, [r4]
+   103e4:	e3530000 	cmp	r3, #0
+   103e8:	18bd8010 	popne	{r4, pc}
+   103ec:	ebffffe0 	bl	10374 <deregister_tm_clones>
+   103f0:	e3a03001 	mov	r3, #1
+   103f4:	e5c43000 	strb	r3, [r4]
+   103f8:	e8bd8010 	pop	{r4, pc}
+   103fc:	00021028 	.word	0x00021028
+
+00010400 <frame_dummy>:
+   10400:	eaffffe6 	b	103a0 <register_tm_clones>
+
+00010404 <main>:
+   10404:	e92d4800 	push	{fp, lr}
+   10408:	e28db004 	add	fp, sp, #4
+   1040c:	e59f000c 	ldr	r0, [pc, #12]	; 10420 <main+0x1c>
+   10410:	ebffffb3 	bl	102e4 <puts@plt>
+   10414:	e3a03000 	mov	r3, #0
+   10418:	e1a00003 	mov	r0, r3
+   1041c:	e8bd8800 	pop	{fp, pc}
+   10420:	00010494 	.word	0x00010494
+
+00010424 <__libc_csu_init>:
+   10424:	e92d47f0 	push	{r4, r5, r6, r7, r8, r9, sl, lr}
+   10428:	e1a07000 	mov	r7, r0
+   1042c:	e59f6048 	ldr	r6, [pc, #72]	; 1047c <__libc_csu_init+0x58>
+   10430:	e59f5048 	ldr	r5, [pc, #72]	; 10480 <__libc_csu_init+0x5c>
+   10434:	e08f6006 	add	r6, pc, r6
+   10438:	e08f5005 	add	r5, pc, r5
+   1043c:	e0466005 	sub	r6, r6, r5
+   10440:	e1a08001 	mov	r8, r1
+   10444:	e1a09002 	mov	r9, r2
+   10448:	ebffff9d 	bl	102c4 <_init>
+   1044c:	e1b06146 	asrs	r6, r6, #2
+   10450:	08bd87f0 	popeq	{r4, r5, r6, r7, r8, r9, sl, pc}
+   10454:	e3a04000 	mov	r4, #0
+   10458:	e2844001 	add	r4, r4, #1
+   1045c:	e4953004 	ldr	r3, [r5], #4
+   10460:	e1a02009 	mov	r2, r9
+   10464:	e1a01008 	mov	r1, r8
+   10468:	e1a00007 	mov	r0, r7
+   1046c:	e12fff33 	blx	r3
+   10470:	e1560004 	cmp	r6, r4
+   10474:	1afffff7 	bne	10458 <__libc_csu_init+0x34>
+   10478:	e8bd87f0 	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+   1047c:	00010ad8 	.word	0x00010ad8
+   10480:	00010ad0 	.word	0x00010ad0
+
+00010484 <__libc_csu_fini>:
+   10484:	e12fff1e 	bx	lr
+
+Disassembly of section .fini:
+
+00010488 <_fini>:
+   10488:	e92d4008 	push	{r3, lr}
+   1048c:	e8bd8008 	pop	{r3, pc}
